@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>omtb_control</name>
+  <version>1.2.1</version>
+  <description>
+    Provides controller using keyboard for omtb.
+  </description>
+  <license>BSD</license>
+  <author email="dqszfuyu@163.com">Yu Fu</author>
+  <author>Yu Fu</author>
+  <maintainer email="dqszfuyu@163.com">Yu Fu</maintainer>
+  <url type="repository">https://github.com/HITROS/omtb</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+</package>

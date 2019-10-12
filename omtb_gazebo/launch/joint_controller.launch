@@ -1,0 +1,19 @@
+<launch>
+  <arg name="use_robot_name"         default="robot1"/>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find omtb_gazebo)/config/joint_controller.yaml" command="load" />
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+  output="screen"  args="joint_state_controller
+                                                  joint1_position
+                                                  joint2_position
+                                                  joint3_position
+                                                  joint4_position
+                                                  gripper_position
+                                                  gripper_sub_position"/>
+
+  <!-- Run gripper sub position publisher -->
+  <node name="gripper_sub_publisher" pkg="omtb_gazebo" type="gripper_sub_publisher" output="screen" />
+
+</launch>

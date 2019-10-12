@@ -1,0 +1,46 @@
+<launch>
+
+  <!-- Arguments -->
+  <arg name="model" default="waffle" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+  <arg name="configuration_basename" default="omtb_lds_2d.lua"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="use_robot_name" default="robot1"/>
+  <param name="use_sim_time" value="true" />
+
+  <!-- robot -->
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="false"/>
+
+  <group ns = "$(arg use_robot_name)">
+    <param name="robot_description"
+      command="$(find xacro)/xacro --inorder '$(find open_manipulator_with_tb3_description)/urdf/open_manipulator_with_tb3_$(arg model).urdf.xacro'  use_robot_name:=$(arg use_robot_name)"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+       <param name="publish_frequency" type="double" value="100.0" />
+       <param name="tf_prefix" value="$(arg use_robot_name)" />
+    </node>
+  </group>
+
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <include file="$(find omtb_slam2d)/launch/omtb_$(arg slam_methods).launch">
+    <arg name="model" value="$(arg model)"/>
+    <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+    <arg name="use_robot_name" value="$(arg use_robot_name)"/>
+    <arg name="set_base_frame" value="$(arg use_robot_name)/base_footprint"/>
+    <arg name="set_odom_frame" value="$(arg use_robot_name)/odom"/>
+    <arg name="set_map_frame"  value="map"/>
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find omtb_slam2d)/rviz/omtb_$(arg slam_methods).rviz"/>
+  </group>
+
+  <!-- rosbag -->
+  <node name="playbag" pkg="rosbag" type="play" args="--clock $(find omtb_slam)/demo/demo.bag" />
+</launch>
