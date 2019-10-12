@@ -1,0 +1,19 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [burger, waffle, waffle_pi]"/>
+  <param name="model" value="$(arg model)"/>
+  <arg name="use_robot_name1" default="robot1"/>
+  <arg name="use_robot_name2" default="robot2"/>
+  <arg name="room" default="room2"/>
+
+  <group ns="$(arg use_robot_name1)">
+    <param name="tf_prefix" value="$(arg use_robot_name1)"/>
+    <node pkg="omtb_control" type="automove_$(arg room).py" name="automove" output="screen">
+    </node>
+  </group>
+
+  <group ns="$(arg use_robot_name2)">
+    <param name="tf_prefix" value="$(arg use_robot_name2)"/>
+    <node pkg="omtb_control" type="automove_$(arg room).py" name="automove" output="screen">
+    </node>
+  </group>
+</launch>

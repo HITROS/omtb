@@ -1,0 +1,15 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [waffle, waffle_pi]"/>
+  <arg name="use_robot_name" default="robot1"/>
+  <arg name="init_pose" default="-x 0.0 -y 0.0 -Y 0"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find omtb_description)/omtb_description/urdf/open_manipulator_with_tb3_$(arg model).urdf.xacro'  use_robot_name:=$(arg use_robot_name)"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+       <param name="publish_frequency" type="double" value="100.0" />
+  </node>
+
+  <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
+       args="-urdf -model $(arg use_robot_name) $(arg init_pose) -J joint2 -1.5707 -J joint3 1.37 -J joint4 0.2258 -param robot_description"/>
+
+</launch>

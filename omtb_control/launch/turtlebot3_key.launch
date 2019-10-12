@@ -1,0 +1,9 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="use_robot_name1" default="robot1"/>
+
+  <group ns="$(arg use_robot_name1)">
+    <node pkg="omtb_control" type="tb3_teleop_key.py" name="tb3_teleop_key" output="screen">
+    </node>
+  </group>
+</launch>

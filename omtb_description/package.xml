@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>omtb_description</name>
+  <version>1.1.0</version>
+  <description>
+    OpenManipulator with TurtleBot3 3D model description for visualization and simulation 
+  </description>
+  <license>Apache 2.0</license>
+  <author email="dqszfuyu@163.com">Yu Fu</author>
+  <maintainer email="dqszfuyu@163.com">Yu Fu</maintainer>
+  <url type="repository">https://github.com/HITROS/omtb</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>urdf</exec_depend>
+</package>
