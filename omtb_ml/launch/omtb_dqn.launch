@@ -1,5 +1,0 @@
-<launch>
-  <arg name="stage" default="1"/>
-  <param name="stage_number"  value="$(arg stage)"/>
-  <node pkg="omtb_ml" type="omtb_dqn" name="omtb_dqn" output="screen" />
-</launch>

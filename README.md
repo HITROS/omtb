@@ -25,10 +25,6 @@ omtb_gazebo
 
 - includes simulation package using gazebo for OMTB
   
-omtb_ml
-
-- includes OMTB applications using Machine Learning
-  
 omtb_slam2d
 
 - provides roslaunch scripts for starting the 2D SLAM
