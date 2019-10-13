@@ -38,7 +38,7 @@ omtb_slam2d
 1.ros-control
 
 ```
-sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
+sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
 ```
 
 2.gazebo-ros-control
