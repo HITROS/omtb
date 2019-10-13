@@ -29,6 +29,34 @@ omtb_slam2d
 
 - provides roslaunch scripts for starting the 2D SLAM
 
+## Before started 
+
+- You need to install some packages of ros. 
+
+- It seems like there were some installing rules changed in 2019, some packages were deleted in ros-kinetic-desktop-full.
+    
+1.ros-control
+
+```
+sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
+```
+
+2.gazebo-ros-control
+```
+sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-msgs ros-kinetic-gazebo-plugins ros-kinetic-gazebo-ros-control
+```
+
+3.ros-navigation
+```
+sudo apt-get install ros-navigation
+```
+
+4.others
+ ```
+sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox
+ ros-kinetic-robotis-math ros-kinetic-industrial-core
+ ```
+
 ## Getting started
 
 1. Run environment for OMTB
