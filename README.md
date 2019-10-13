@@ -91,7 +91,7 @@ roslaunch omtb_gazebo 2tb_room2_ramp1.launch
 
 ```
 Template:
-roslaunch omtb_slam2d omtb_slam.launch slam_methods:=${gmapping, hector, karto or cartographer}
+roslaunch omtb_slam2d slam.launch slam_methods:=${gmapping, hector, karto or cartographer}
 ```
 
 - Using multi-turtlebot3 for SLAM (Now only support hector_SLAM)
