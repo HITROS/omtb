@@ -64,7 +64,7 @@ sudo apt-get install ros-navigation
 4.others
  ```
 sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox
- ros-kinetic-robotis-math ros-kinetic-industrial-core
+ ros-kinetic-robotis-math ros-kinetic-industrial-core ros-kinetic-smach*
  ```
 
 ## Getting started
