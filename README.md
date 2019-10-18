@@ -13,21 +13,31 @@ Gazebo version: 7.0 or higher
 
 omtb_control
 
-- provides controller using keyboard for OMTB
+- keyboard controller for OMTB
   
-- provides automove function for OMTB
+- automove function for OMTB
+
+- launch scripts for OpenManipulator
   
 omtb_description
 
-- provides OMTB 3D model description for visualization and simulation
+- OMTB 3D model description for visualization and simulation
   
 omtb_gazebo
 
-- includes simulation package using gazebo for OMTB
+- simulation package using gazebo for OMTB
+
+omtb_moveit
+
+- Moveit controller for OpenManipulator
   
 omtb_slam2d
 
-- provides roslaunch scripts for starting the 2D SLAM
+- roslaunch scripts for 2D SLAM
+
+omtb_slam3d
+
+- roslaunch scripts for 3D SLAM
 
 ## Before started 
 
@@ -59,14 +69,15 @@ sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-d
 
 ## Getting started
 
+### SLAM
+
 1. Run environment for OMTB
 
 ```
-Template:
 roslaunch omtb_gazebo ${NUM}tb_room${NUM}.launch
 ```
 
-Example:
+Examples:
 
 - A single turtlebot in room1
 
@@ -90,7 +101,6 @@ roslaunch omtb_gazebo 2tb_room2_ramp1.launch
 - Using single-turtlebot3 for SLAM
 
 ```
-Template:
 roslaunch omtb_slam2d slam.launch slam_methods:=${gmapping, hector, karto or cartographer}
 ```
 
@@ -111,11 +121,10 @@ roslaunch omtb_control turtlebot3_key.launch
 - Using automove function
 
 ```
-Template:
 roslaunch omtb_control automove_${NUM}tb_room${NUM}.launch
 ```
 
-Example:
+Examples:
 
 - for a single turtlebot3 in room1
 
@@ -139,11 +148,10 @@ rosrun map_server map_saver map:=/robot${NUM}/map -f /${YOUR PATH}
 5. Start robot navigation
 
 ```
-Template:
 roslaunch omtb_slam2d navigation_${NUM}tb_room${NUM}.launch
 ```
 
-Example:
+Examples:
 
 - for a single turtlebot in room2
 
@@ -155,4 +163,11 @@ roslaunch omtb_control automove_1tb_room2.launch
 
 ```
 roslaunch omtb_slam2d navigation_2tb_room2.launch
+```
+
+### Pick and place
+
+```
+roslaunch omtb_gazebo 2tb_room2_ycb.launch
+roslaunch omtb_control pick_and_place_2tb_room2.launch
 ```

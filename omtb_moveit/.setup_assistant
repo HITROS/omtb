@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: omtb_description
+    relative_path: omtb_description/urdf/open_manipulator_with_tb3_waffle.urdf.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/robot.srdf
+  CONFIG:
+    author_name: Yu Fu
+    author_email: hitfuyu@163.com
+    generated_timestamp: 1571044827

@@ -1,0 +1,7 @@
+image: room2_10mm.pgm
+resolution: 0.010000
+origin: [-3.965517, -3.918997, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

@@ -1,0 +1,31 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [waffle, waffle_pi]"/>
+  <arg name="use_robot_name1"         default="robot1"/>
+  <arg name="use_platform"           default="true" />
+  <arg name="planning_group"         default="arm" />
+  <arg name="sample_duration"        default="0.050" />
+  <arg name="open_rviz"              default="true"/>
+  <arg name="debug"                  default="false" />
+  <arg name="grab" default="true"/>
+
+
+  <include file="$(find omtb_control)/launch/manipulation.launch">
+    <arg name="use_robot_name1" value="$(arg use_robot_name1)"/>
+    <arg name="planning_group" value="$(arg planning_group)"/>
+  </include>
+
+  <include file="$(find omtb_slam2d)/launch/navigation_1tb_room2.launch">
+    <arg name="use_robot_name1" value="$(arg use_robot_name1)"/>
+    <arg name="open_rviz"  value="$(arg open_rviz)"/>
+    <arg name="grab" value="$(arg grab)"/>
+  </include>
+
+  <node name="pick_and_place_state_machine" pkg="omtb_control" type="pick_and_place.py" output="screen">
+    <param name="robot_name"  value="$(arg use_robot_name1)"/>
+    <param name="planning_group"  value="$(arg planning_group)"/>
+  </node>
+
+
+
+
+</launch>

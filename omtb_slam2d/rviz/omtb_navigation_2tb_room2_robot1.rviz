@@ -91,7 +91,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         camera_rgb_frame:
           Alpha: 1
           Show Axes: false
@@ -110,6 +109,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        end_effector_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         eye_in_hand:
           Alpha: 1
           Show Axes: false
@@ -403,7 +406,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.56079638
+      Angle: -6.28079796
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
@@ -413,7 +416,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 68.1472015
+      Scale: 81.8438644
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 0

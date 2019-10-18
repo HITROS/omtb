@@ -5,23 +5,15 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Status1
-        - /RobotModel1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /Map1
         - /Map1/Position1
-        - /Global Map1/Costmap1
-        - /Global Map1/Planner1
-        - /Local Map1/Polygon1
-        - /Local Map1/Costmap1
-        - /Local Map1/Planner1
-        - /Cartographer1
+        - /Cartographer1/scan_matched_points21
+        - /Cartographer1/scan_matched_points21/Status1
         - /Cartographer1/Submaps1
         - /Cartographer1/Trajectories1
         - /Cartographer1/Constraints1
         - /Cartographer1/Landmark Poses1
-        - /Camera1
       Splitter Ratio: 0.622478366
     Tree Height: 514
   - Class: rviz/Selection
@@ -116,6 +108,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         caster_back_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        end_effector_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -230,7 +227,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.0300000012
       Style: Flat Squares
-      Topic: /scan
+      Topic: /robot1/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -256,126 +253,6 @@ Visualization Manager:
       Topic: /robot1/map
       Unreliable: false
       Use Timestamp: false
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 0; 0; 0
-      Enabled: true
-      Head Diameter: 0.300000012
-      Head Length: 0.200000003
-      Length: 0.300000012
-      Line Style: Lines
-      Line Width: 0.0299999993
-      Name: Planner Plan
-      Offset:
-        X: 0
-        Y: 0
-        Z: 0
-      Pose Color: 255; 85; 255
-      Pose Style: None
-      Radius: 0.0299999993
-      Shaft Diameter: 0.100000001
-      Shaft Length: 0.100000001
-      Topic: /move_base/NavfnROS/plan
-      Unreliable: false
-      Value: true
-    - Class: rviz/Group
-      Displays:
-        - Alpha: 0.699999988
-          Class: rviz/Map
-          Color Scheme: costmap
-          Draw Behind: true
-          Enabled: true
-          Name: Costmap
-          Topic: /move_base/global_costmap/costmap
-          Unreliable: false
-          Use Timestamp: false
-          Value: true
-        - Alpha: 1
-          Buffer Length: 1
-          Class: rviz/Path
-          Color: 255; 0; 0
-          Enabled: true
-          Head Diameter: 0.300000012
-          Head Length: 0.200000003
-          Length: 0.300000012
-          Line Style: Lines
-          Line Width: 0.0299999993
-          Name: Planner
-          Offset:
-            X: 0
-            Y: 0
-            Z: 0
-          Pose Color: 255; 85; 255
-          Pose Style: None
-          Radius: 0.0299999993
-          Shaft Diameter: 0.100000001
-          Shaft Length: 0.100000001
-          Topic: /move_base/DWAPlannerROS/global_plan
-          Unreliable: false
-          Value: true
-      Enabled: true
-      Name: Global Map
-    - Class: rviz/Group
-      Displays:
-        - Alpha: 1
-          Class: rviz/Polygon
-          Color: 0; 0; 0
-          Enabled: true
-          Name: Polygon
-          Topic: /move_base/local_costmap/footprint
-          Unreliable: false
-          Value: true
-        - Alpha: 0.699999988
-          Class: rviz/Map
-          Color Scheme: costmap
-          Draw Behind: false
-          Enabled: true
-          Name: Costmap
-          Topic: /move_base/local_costmap/costmap
-          Unreliable: false
-          Use Timestamp: false
-          Value: true
-        - Alpha: 1
-          Buffer Length: 1
-          Class: rviz/Path
-          Color: 0; 0; 255
-          Enabled: true
-          Head Diameter: 0.300000012
-          Head Length: 0.200000003
-          Length: 0.300000012
-          Line Style: Lines
-          Line Width: 0.0299999993
-          Name: Planner
-          Offset:
-            X: 0
-            Y: 0
-            Z: 0
-          Pose Color: 255; 85; 255
-          Pose Style: None
-          Radius: 0.0299999993
-          Shaft Diameter: 0.100000001
-          Shaft Length: 0.100000001
-          Topic: /move_base/DWAPlannerROS/local_plan
-          Unreliable: false
-          Value: true
-      Enabled: true
-      Name: Local Map
-    - Alpha: 1
-      Axes Length: 1
-      Axes Radius: 0.100000001
-      Class: rviz/Pose
-      Color: 255; 25; 0
-      Enabled: true
-      Head Length: 0.300000012
-      Head Radius: 0.100000001
-      Name: Goal
-      Shaft Length: 0.5
-      Shaft Radius: 0.0500000007
-      Shape: Arrow
-      Topic: /move_base_simple/goal
-      Unreliable: false
       Value: true
     - Class: rviz/Group
       Displays:
@@ -404,7 +281,7 @@ Visualization Manager:
           Size (Pixels): 3
           Size (m): 0.0300000012
           Style: Flat Squares
-          Topic: /scan_matched_points2
+          Topic: /robot1/scan_matched_points2
           Unreliable: false
           Use Fixed Frame: true
           Use rainbow: true
@@ -418,16 +295,20 @@ Visualization Manager:
           Submap query service: /submap_query
           Submaps:
             All: true
-          Topic: /submap_list
+            Trajectory 0:
+              0.118: true
+              1.28: true
+              Value: true
+          Topic: /robot1/submap_list
           Tracking frame: base_link
           Unreliable: false
           Value: true
         - Class: rviz/MarkerArray
           Enabled: true
-          Marker Topic: /trajectory_node_list
+          Marker Topic: /robot1/trajectory_node_list
           Name: Trajectories
           Namespaces:
-            {}
+            Trajectory 0: true
           Queue Size: 100
           Value: true
         - Class: rviz/MarkerArray
@@ -440,7 +321,7 @@ Visualization Manager:
           Value: true
         - Class: rviz/MarkerArray
           Enabled: true
-          Marker Topic: /landmark_poses_list
+          Marker Topic: /robot1/landmark_poses_list
           Name: Landmark Poses
           Namespaces:
             {}
@@ -466,21 +347,10 @@ Visualization Manager:
           Trajectories: true
           Value: true
           scan_matched_points2: true
-        Global Map:
-          Costmap: true
-          Planner: true
-          Value: true
-        Goal: true
         Grid: true
         Image: true
         LaserScan: true
-        Local Map:
-          Costmap: true
-          Planner: true
-          Polygon: true
-          Value: true
         Map: true
-        Planner Plan: true
         RobotModel: true
         TF: true
         Value: true
@@ -541,5 +411,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1279
-  X: 79
-  Y: 39
+  X: 71
+  Y: 36

@@ -1,0 +1,41 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [waffle, waffle_pi]"/>
+  <arg name="use_robot_name1"         default="robot1"/>
+  <arg name="use_platform"           default="true" />
+  <arg name="planning_group"         default="arm" />
+  <arg name="sample_duration"        default="0.050" />
+  <arg name="open_rviz"              default="true"  />
+  <arg name="debug"                  default="false" />
+
+
+
+  <group ns="$(arg use_robot_name1)">
+    <group if="$(arg use_platform)">
+      <node name="gazebo_bridge" pkg="omtb_control" type="gazebo_bridge" output="screen"/>
+    </group>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <rosparam param="source_list" subst_value="true">["$(arg use_robot_name1)/joint_states"]</rosparam>
+    </node>
+
+    <include file="$(find omtb_moveit)/launch/planning_context.launch">
+      <arg name="load_robot_description" value="false"/>
+    </include>
+
+    <include file="$(find omtb_moveit)/launch/move_group.launch">
+      <arg name="allow_trajectory_execution" value="false"/>
+      <arg name="fake_execution" value="false"/>
+      <arg name="info" value="true"/>
+      <arg name="debug" value="$(arg debug)"/>
+    </include>
+
+    <node name="$(arg planning_group)" pkg="omtb_control" type="moveit_bridge" output="screen">
+      <param name="planning_group"      value="$(arg planning_group)"/>
+      <param name="use_platform"      value="$(arg use_platform)"/>
+      <remap from="$(arg planning_group)/joint_trajectory_point" to="joint_trajectory_point"/>
+    </node>
+
+    <node name="gripper_server" pkg="omtb_control" type="gripper_server" output="screen"/>
+  </group>
+
+</launch>

@@ -217,12 +217,12 @@
   </joint>
 
   <link name="camera_link">
-    <visual>
+<!--    <visual>
      <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
       <geometry>
        <mesh filename="package://omtb_description/turtlebot3_description/meshes/sensors/r200.dae" />
       </geometry>
-    </visual>
+    </visual>-->
   </link>
 
   <joint name="camera_rgb_joint" type="fixed">
