@@ -72,7 +72,8 @@ catkin_install_python(PROGRAMS
   nodes/tb3_teleop_key.py
   nodes/automove_room1.py
   nodes/automove_room2.py
-  nodes/pick_and_place.py
+  nodes/pick_and_place_robot1.py
+  nodes/pick_and_place_robot2.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

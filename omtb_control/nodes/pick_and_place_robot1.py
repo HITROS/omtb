@@ -312,8 +312,22 @@ def main():
                                 SimpleActionState("move_base",
                                                 MoveBaseAction,
                                                 goal=the_location_of_the_origin),
-                                transitions={'succeeded':'GO_TO_THE_CABINET',
+                                transitions={'succeeded':'PAUSE',
                                              'aborted':'aborted'})
+
+        smach.StateMachine.add('PAUSE',
+                                ServiceState(planning_group + '/moveit/set_joint_position',
+                                                SetJointPosition,
+                                                request_cb=joint_position_request_cb,
+                                                response_cb=joint_position_response_cb,
+                                                input_keys=['input_planning_group',
+                                                            'input_position',
+                                                            'input_tolerance']),
+                                transitions={'succeeded':'GO_TO_THE_CABINET',
+                                             'aborted':'aborted'},
+                                remapping={'input_planning_group':'planning_group',
+                                            'input_position':'init_position',
+                                            'input_tolerance':'init_tolerance'})
 
         smach.StateMachine.add('GO_TO_THE_CABINET',
                                 SimpleActionState("move_base",
