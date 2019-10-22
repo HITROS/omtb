@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="turtlebot3_waffle_sim" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:arg name="laser_visual"  default="true"/>
+  <xacro:arg name="laser_visual"  default="false"/>
   <xacro:arg name="camera_visual" default="false"/>
   <xacro:arg name="imu_visual"    default="false"/>
   <xacro:arg name="use_robot_name"    default="robot1"/>
@@ -124,7 +124,7 @@
             <!-- <samples>24</samples> -->
             <resolution>1</resolution>
             <min_angle>0.0</min_angle>
-            <max_angle>6.28319</max_angle>
+            <max_angle>6.283185</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -141,6 +141,49 @@
       <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
         <topicName>scan</topicName>
         <frameName>base_scan</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="multi_base_scan">
+    <sensor type="ray" name="VLP16">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>20</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.283185</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+<!--            <samples>9</samples>-->
+            <resolution>1</resolution>
+<!--            <min_angle>-0.017453</min_angle>-->
+            <min_angle>-0.523599</min_angle>
+            <max_angle>0.523599</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>3.5</max>
+          <resolution>0.02</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
+        <topicName>points2</topicName>
+        <frameName>multi_base_scan</frameName>
+        <min_range>0.3</min_range>
+        <max_range>3.5</max_range>
+        <gaussianNoise>0.01</gaussianNoise>
       </plugin>
     </sensor>
   </gazebo>

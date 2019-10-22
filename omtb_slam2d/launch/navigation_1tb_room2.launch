@@ -33,6 +33,5 @@
         <remap from="/move_base_simple/goal" to="/$(arg use_robot_name1)/move_base_simple/goal"/>
       </node>
     </group>
-
   </group>
 </launch>

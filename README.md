@@ -63,8 +63,7 @@ sudo apt-get install ros-navigation
 
 4.others
  ```
-sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox
- ros-kinetic-robotis-math ros-kinetic-industrial-core ros-kinetic-smach*
+sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox ros-kinetic-robotis-math ros-kinetic-industrial-core ros-kinetic-smach* ros-kinetic-velodyne*
  ```
 
 ## Getting started
@@ -170,4 +169,15 @@ roslaunch omtb_slam2d navigation_2tb_room2.launch
 ```
 roslaunch omtb_gazebo 2tb_room2_ycb.launch
 roslaunch omtb_control pick_and_place_2tb_room2.launch
+```
+
+### Multi-line lidar
+
+```
+roslaunch omtb_gazebo 1tb_room2.launch
+roslaunch omtb_slam2d slam.launch slam_methods:=cartographer_vlp16
+roslaunch omtb_control automove_1tb_room2.launch
+rosbag record /robot1/imu /robot1/odom /robot1/points2 /robot1/scan /tf /tf_static
+rosservice call /robot1/write_state ${Bag_name}.pbstream
+roslaunch omtb_slam2d assets_writer_vlp16.launch bag_filenames:=${Bag_name} pose_graph_filename:=${Bag_name}.pbstream
 ```
