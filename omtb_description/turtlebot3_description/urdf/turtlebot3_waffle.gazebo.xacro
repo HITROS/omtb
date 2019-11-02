@@ -10,8 +10,8 @@
   </gazebo>
 
   <gazebo reference="wheel_left_link">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -21,8 +21,8 @@
   </gazebo>
 
   <gazebo reference="wheel_right_link">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -32,8 +32,8 @@
   </gazebo>
 
   <gazebo reference="caster_back_right_link">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -42,8 +42,8 @@
   </gazebo>
 
   <gazebo reference="caster_back_left_link">
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -197,7 +197,7 @@
           <image>
               <width>640</width>
               <height>480</height>
-              <format>R8G8B8</format>
+              <format>B8G8R8</format>
           </image>
           <depth_camera></depth_camera>
           <clip>
