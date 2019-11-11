@@ -11,10 +11,10 @@ Gazebo version: 7.0 or higher
 
 ## Docker
 
-Docker Container of OMTB. You can directly use the environment.
+Docker Container for OMTB. You can directly use the environment.
 
 ```
-sudo docker push syf758521/navigation:v1.0
+sudo docker pull syf758521/navigation:v1.0
 ```
 
 A simple example:
