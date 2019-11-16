@@ -16,7 +16,7 @@
 
 /* Authors: Darby Lim, Hye-Jong KIM, Ryan Shim, Yong-Ho Na */
 
-#include "moveit_bridge.h"
+#include "omtb_control/moveit_bridge.h"
 
 MoveItBridge::MoveItBridge()
     :nh_(""),
@@ -120,7 +120,7 @@ bool MoveItBridge::calcPlannedPath(const std::string planning_group, open_manipu
   move_group_->setMaxAccelerationScalingFactor(msg.max_accelerations_scaling_factor);
 
   move_group_->setGoalTolerance(msg.tolerance);
-
+  move_group_->setPlanningTime(10);
   moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 
   bool success = (move_group_->plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
@@ -161,7 +161,6 @@ bool MoveItBridge::calcPlannedPath(const std::string planning_group, open_manipu
   }
 
   move_group_->setJointValueTarget(joint_group_positions);
-
   move_group_->setMaxVelocityScalingFactor(msg.max_velocity_scaling_factor);
   move_group_->setMaxAccelerationScalingFactor(msg.max_accelerations_scaling_factor);
 

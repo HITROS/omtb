@@ -10,8 +10,8 @@
   </gazebo>
 
   <gazebo reference="wheel_left_link">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1000</mu1>
+    <mu2>100</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -21,8 +21,8 @@
   </gazebo>
 
   <gazebo reference="wheel_right_link">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1000</mu1>
+    <mu2>100</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -32,8 +32,8 @@
   </gazebo>
 
   <gazebo reference="caster_back_right_link">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1000</mu1>
+    <mu2>100</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -42,8 +42,8 @@
   </gazebo>
 
   <gazebo reference="caster_back_left_link">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1000</mu1>
+    <mu2>100</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
@@ -145,7 +145,7 @@
     </sensor>
   </gazebo>
 
-  <gazebo reference="multi_base_scan">
+  <gazebo reference="base_scan1">
     <sensor type="ray" name="VLP16">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
@@ -160,9 +160,7 @@
           </horizontal>
           <vertical>
             <samples>16</samples>
-<!--            <samples>9</samples>-->
             <resolution>1</resolution>
-<!--            <min_angle>-0.017453</min_angle>-->
             <min_angle>-0.523599</min_angle>
             <max_angle>0.523599</max_angle>
           </vertical>
@@ -180,7 +178,7 @@
       </ray>
       <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
         <topicName>points2</topicName>
-        <frameName>multi_base_scan</frameName>
+        <frameName>base_scan1</frameName>
         <min_range>0.3</min_range>
         <max_range>3.5</max_range>
         <gaussianNoise>0.01</gaussianNoise>

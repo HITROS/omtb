@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.5">
+  <model name="ycb_base">
+    <link name="link">
+      <pose>0 0 0.025 0 0 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>0.15 0.3 0.05</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1000.0</mu>
+              <mu2>100.0</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>1000000.0</kp>
+              <kd>100.0</kd>
+              <max_vel>1.0</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.15 0.3 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Purple</name>
+          </script>
+        </material>
+      </visual>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+  </model>
+</sdf>

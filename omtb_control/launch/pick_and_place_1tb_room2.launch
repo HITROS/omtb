@@ -20,7 +20,7 @@
     <arg name="grab" value="$(arg grab)"/>
   </include>
 
-  <node name="pick_and_place_state_machine" pkg="omtb_control" type="pick_and_place.py" output="screen">
+  <node name="pick_and_place_state_machine" pkg="omtb_control" type="pick_and_place_$(arg use_robot_name1).py" output="screen">
     <param name="robot_name"  value="$(arg use_robot_name1)"/>
     <param name="planning_group"  value="$(arg planning_group)"/>
   </node>

@@ -1,0 +1,18 @@
+<launch>
+  <arg name="model" default="waffle" doc="model type [waffle, waffle_pi]"/>
+  <arg name="use_robot_name1"         default="robot1"/>
+  <arg name="use_platform"           default="true" />
+  <arg name="planning_group"         default="arm" />
+  <arg name="open_rviz"              default="false"/>
+  <arg name="debug"                  default="false" />
+  <arg name="grab" default="true"/>
+
+
+  <group ns="$(arg use_robot_name1)">
+    <node name="pick_and_place_state_machine" pkg="omtb_control" type="env1.py" output="screen">
+      <param name="robot_name"  value="$(arg use_robot_name1)"/>
+      <param name="planning_group"  value="$(arg planning_group)"/>
+    </node>
+  </group>
+
+</launch>

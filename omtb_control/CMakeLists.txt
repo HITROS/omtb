@@ -23,6 +23,7 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_ros_planning_interface
   smach
   smach_ros
+  tf
 )
 
 ################################################################################
@@ -43,7 +44,7 @@ catkin_python_setup()
 ################################################################################
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS rospy roscpp std_msgs geometry_msgs nav_msgs moveit_msgs trajectory_msgs open_manipulator_msgs ar_track_alvar_msgs moveit_core moveit_ros_planning moveit_ros_planning_interface smach smach_ros
+  CATKIN_DEPENDS rospy roscpp std_msgs geometry_msgs nav_msgs moveit_msgs trajectory_msgs open_manipulator_msgs ar_track_alvar_msgs moveit_core moveit_ros_planning moveit_ros_planning_interface smach smach_ros tf
 )
 
 ################################################################################
@@ -53,6 +54,9 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
 )
+
+add_library( omtb_kinematics  src/omtb_kinematics.cpp)
+target_link_libraries(omtb_kinematics ${catkin_LIBRARIES})
 
 add_executable(moveit_bridge src/moveit_bridge.cpp)
 add_dependencies(moveit_bridge ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
@@ -65,6 +69,12 @@ target_link_libraries(gazebo_bridge ${catkin_LIBRARIES})
 add_executable(gripper_server src/gripper_server.cpp)
 add_dependencies(gripper_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(gripper_server ${catkin_LIBRARIES})
+
+add_executable(omtb_moveit src/omtb_moveit.cpp)
+add_dependencies(omtb_moveit ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(omtb_moveit omtb_kinematics ${catkin_LIBRARIES})
+
+
 ################################################################################
 # Install
 ################################################################################

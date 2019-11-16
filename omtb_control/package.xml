@@ -26,6 +26,7 @@
   <depend>moveit_ros_planning_interface</depend>
   <depend>smach</depend>
   <depend>smach_ros</depend>
+  <depend>tf</depend>
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>amcl</exec_depend>
