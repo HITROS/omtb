@@ -9,6 +9,23 @@ ROS version: Kinetic
 
 Gazebo version: 7.0 or higher
 
+## Docker
+
+Docker Container for OMTB. You can directly use the environment.
+
+```
+sudo docker pull syf758521/navigation:v1.0
+```
+
+A simple example:
+
+```
+sudo docker run -p 6080:80 -p 5900:5900 -e VNC_PASSWORD=1234 -e RESOLUTION=1920x1080 -v /dev/shm:/dev/shm syf758521/navigation:v1.0
+```
+Browse http://127.0.0.1:6080/
+
+Vnc Viewer 127.0.0.1:5900
+
 ## Feature list
 
 omtb_control
