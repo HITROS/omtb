@@ -75,7 +75,7 @@ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-msgs ros-kin
 
 3.ros-navigation
 ```
-sudo apt-get install ros-navigation
+sudo apt-get install ros-kinetic-navigation
 ```
 
 4.others
