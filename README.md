@@ -48,13 +48,13 @@ omtb_moveit
 
 - Moveit controller for OpenManipulator
   
-omtb_slam2d
+slam_lidar
 
-- roslaunch scripts for 2D SLAM
+- roslaunch scripts for SLAM using LiDAR
 
-omtb_slam3d
+slam_vision
 
-- roslaunch scripts for 3D SLAM
+- roslaunch scripts for SLAM using RGB or RGBD camera
 
 ## Before started 
 
@@ -80,7 +80,7 @@ sudo apt-get install ros-kinetic-navigation
 
 4.others
  ```
-sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox ros-kinetic-robotis-math ros-kinetic-industrial-core ros-kinetic-smach* ros-kinetic-velodyne*
+sudo apt-get install ros-kinetic-moveit* ros-kinetic-dynamixel-sdk ros-kinetic-dynamixel-workbench-toolbox ros-kinetic-robotis-math ros-kinetic-industrial-core ros-kinetic-smach* ros-kinetic-velodyne* ros-kinetic-hector-gazebo-plugins
  ```
 
 ## Getting started
@@ -117,13 +117,13 @@ roslaunch omtb_gazebo 2tb_room2_ramp1.launch
 - Using single-turtlebot3 for SLAM
 
 ```
-roslaunch omtb_slam2d slam.launch slam_methods:=${gmapping, hector, karto or cartographer}
+roslaunch slam_lidar slam.launch slam_methods:=${gmapping, hector, karto or cartographer}
 ```
 
 - Using multi-turtlebot3 for SLAM (Now only support hector_SLAM)
 
 ```
-roslaunch omtb_slam2d map_merge_hector.launch
+roslaunch slam_lidar map_merge_hector.launch
 ```
 
 3. Provide control method for OMTB
@@ -164,7 +164,7 @@ rosrun map_server map_saver map:=/robot${NUM}/map -f /${YOUR PATH}
 5. Start robot navigation
 
 ```
-roslaunch omtb_slam2d navigation_${NUM}tb_room${NUM}.launch
+roslaunch slam_lidar navigation_${NUM}tb_room${NUM}.launch
 ```
 
 Examples:
@@ -178,7 +178,7 @@ roslaunch omtb_control automove_1tb_room2.launch
 - for two turtlebot3 in room2
 
 ```
-roslaunch omtb_slam2d navigation_2tb_room2.launch
+roslaunch slam_lidar navigation_2tb_room2.launch
 ```
 
 ### Pick and place
@@ -188,13 +188,13 @@ roslaunch omtb_gazebo 2tb_room2_ycb.launch
 roslaunch omtb_control pick_and_place_2tb_room2.launch
 ```
 
-### Multi-line lidar
+### Multi-line LiDAR
 
 ```
 roslaunch omtb_gazebo 1tb_room2.launch
-roslaunch omtb_slam2d slam.launch slam_methods:=cartographer_vlp16
+roslaunch slam_lidar slam.launch slam_methods:=cartographer_vlp16
 roslaunch omtb_control automove_1tb_room2.launch
 rosbag record /robot1/imu /robot1/odom /robot1/points2 /robot1/scan /tf /tf_static
 rosservice call /robot1/write_state ${Bag_name}.pbstream
-roslaunch omtb_slam2d assets_writer_vlp16.launch bag_filenames:=${Bag_name} pose_graph_filename:=${Bag_name}.pbstream
+roslaunch slam_lidar assets_writer_vlp16.launch bag_filenames:=${Bag_name} pose_graph_filename:=${Bag_name}.pbstream
 ```

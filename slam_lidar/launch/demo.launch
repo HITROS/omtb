@@ -26,7 +26,7 @@
 
 
   <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
-  <include file="$(find omtb_slam2d)/launch/omtb_$(arg slam_methods).launch">
+  <include file="$(find slam_lidar)/launch/omtb_$(arg slam_methods).launch">
     <arg name="model" value="$(arg model)"/>
     <arg name="configuration_basename" value="$(arg configuration_basename)"/>
     <arg name="use_robot_name" value="$(arg use_robot_name)"/>
@@ -38,7 +38,7 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find omtb_slam2d)/rviz/omtb_$(arg slam_methods).rviz"/>
+          args="-d $(find slam_lidar)/rviz/omtb_$(arg slam_methods).rviz"/>
   </group>
 
   <!-- rosbag -->

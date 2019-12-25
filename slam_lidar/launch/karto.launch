@@ -7,7 +7,7 @@
 
   <!-- slam_karto -->
   <node pkg="slam_karto" type="slam_karto" name="$(arg use_robot_name)_slam_karto" output="screen">
-    <rosparam command="load" file="$(find omtb_slam2d)/config/karto_mapper_params.yaml" />
+    <rosparam command="load" file="$(find slam_lidar)/config/karto_mapper_params.yaml" />
     <param name="base_frame" value="$(arg use_robot_name)/base_footprint"/>
     <param name="odom_frame" value="$(arg use_robot_name)/odom"/>
     <param name="map_frame"  value="$(arg use_robot_name)/map"/>

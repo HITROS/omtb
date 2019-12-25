@@ -8,7 +8,7 @@
 
   <group ns="$(arg use_robot_name1)">
     <param name="tf_prefix" value="robot1" />
-    <include file="$(find omtb_slam2d)/launch/$(arg slam_methods).launch">
+    <include file="$(find slam_lidar)/launch/$(arg slam_methods).launch">
       <arg name="model" value="$(arg model)"/>
       <arg name="use_robot_name" value="$(arg use_robot_name1)"/>
     </include>
@@ -18,7 +18,7 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find omtb_slam2d)/rviz/omtb_$(arg slam_methods).rviz"/>
+          args="-d $(find slam_lidar)/rviz/omtb_$(arg slam_methods).rviz"/>
   </group>
 
 </launch>

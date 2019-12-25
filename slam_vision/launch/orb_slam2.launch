@@ -1,0 +1,36 @@
+<launch>
+  <arg name="use_robot_name" default="robot1"/>
+  <!-- Choose between RGB-D and stereo -->      
+  <arg name="stereo"          default="false"/>
+ 
+  <!-- sim time for convenience, if playing a rosbag -->
+  <arg name="use_sim_time"            default="false"/>
+  <param if="$(arg use_sim_time)" name="use_sim_time" value="true"/>
+  
+  <arg name="rgb_topic"               default="/$(arg use_robot_name)/camera/rgb/image_raw" />
+  <arg name="depth_topic"             default="/$(arg use_robot_name)/camera/depth/image_raw" />
+  <arg name="left_camera_topic"               default="/$(arg use_robot_name)/stereo/left/image_raw" />
+  <arg name="right_camera_topic"             default="/$(arg use_robot_name)/stereo/right/image_raw" />
+  <arg name="path_to_vocabulary"       default="$(find ORB_SLAM2)/Vocabulary/ORBvoc.txt" />
+  <arg name="path_to_stereo_settings" default="$(find slam_vision)/param/stereo.yaml" />
+  <arg name="path_to_rgbd_settings" default="$(find slam_vision)/param/rgbd.yaml" />
+  
+  <!-- Nodes -->
+  <group ns="$(arg use_robot_name)">
+    <!-- stereo -->
+    <group if="$(arg stereo)">
+      <node pkg="ORB_SLAM2" type="Stereo" name="ORB_SLAM2_Stereo" args="$(arg path_to_vocabulary) $(arg path_to_stereo_settings)" output="screen">
+        <remap from="/camera/left/image_raw"   to="$(arg left_camera_topic)"/>
+        <remap from="camera/right/image_raw"  to="$(arg right_camera_topic)"/>
+      </node>
+    </group>
+    <!-- rgbd -->
+    <group unless="$(arg stereo)">
+      <node pkg="ORB_SLAM2" type="RGBD" name="ORB_SLAM2_RGBD" args="$(arg path_to_vocabulary) $(arg path_to_rgbd_settings)" output="screen">
+        <remap from="/camera/rgb/image_raw"   to="$(arg rgb_topic)"/>
+        <remap from="camera/depth_registered/image_raw"  to="$(arg depth_topic)"/>
+      </node>
+    </group>
+  </group>
+</launch>
+

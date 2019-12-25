@@ -14,7 +14,7 @@
     <arg name="planning_group" value="$(arg planning_group)"/>
   </include>
 
-  <include file="$(find omtb_slam2d)/launch/navigation_1tb_room2.launch">
+  <include file="$(find slam_lidar)/launch/navigation_1tb_room2.launch">
     <arg name="use_robot_name1" value="$(arg use_robot_name1)"/>
     <arg name="open_rviz"  value="$(arg open_rviz)"/>
     <arg name="grab" value="$(arg grab)"/>

@@ -137,9 +137,9 @@ class OutAndBack():
                 if abs(angle_to_goal - rotation) > abs(angular_tolerance) or abs(angle_to_goal - rotation) > pi - abs(angular_tolerance):
                     move_cmd.linear.x = 0
                     if angle_to_goal > rotation:
-                        move_cmd.angular.z = 0.4
+                        move_cmd.angular.z = 0.3
                     else:
-                        move_cmd.angular.z = -0.4
+                        move_cmd.angular.z = -0.3
                 else:
                     move_cmd.linear.x = 0.1
                     move_cmd.angular.z = 0.0

@@ -18,7 +18,7 @@
   <param name="/use_sim_time" value="true" />
   <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
       type="cartographer_assets_writer" args="
-          -configuration_directory $(find omtb_slam2d)/config
+          -configuration_directory $(find slam_lidar)/config
           -configuration_basename assets_writer_vlp16.lua
           -bag_filenames $(arg bag_filenames)
           -pose_graph_filename $(arg pose_graph_filename)"

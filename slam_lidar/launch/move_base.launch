@@ -1,0 +1,37 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="waffle" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="use_robot_name" default="robot1"/>
+  <arg name="grab" default="false"/>
+
+  <!-- move_base -->
+  <group if="$(arg grab)">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base_node">
+      <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+      <rosparam file="$(find slam_lidar)/param/costmap_common_params_$(arg model)_grab.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find slam_lidar)/param/costmap_common_params_$(arg model)_grab.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find slam_lidar)/param/local_costmap_params_grab.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/global_costmap_params_grab.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/move_base_params_grab.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/dwa_local_planner_params_$(arg model)_grab.yaml" command="load" />
+      <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+    </node>
+  </group>
+
+  <group unless="$(arg grab)">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
+      <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+      <rosparam file="$(find slam_lidar)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find slam_lidar)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find slam_lidar)/param/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/move_base_params.yaml" command="load" />
+      <rosparam file="$(find slam_lidar)/param/dwa_local_planner_params_$(arg model).yaml" command="load" />
+      <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+    </node>
+  </group>
+
+
+
+</launch>
